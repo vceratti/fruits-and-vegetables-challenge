@@ -9,9 +9,9 @@ We want to build a service which will take a `request.json` and:
 * Provide an API endpoint to query the collections. As a bonus, this endpoint can accept filters to be applied to the returning collection.
 * Provide another API endpoint to add new items to the collections (i.e., your storage engine).
 * As a bonus you might:
-  * consider giving option to decide which units are returned (kilograms/grams);
+  * consider giving an option to decide which units are returned (kilograms/grams);
   * how to implement `search()` method collections;
-  * use latest version of Symfony's to embbed your logic 
+  * use latest version of Symfony's to embed your logic 
 
 ### ✔️ How can I check if my code is working?
 You have two ways of moving on:
