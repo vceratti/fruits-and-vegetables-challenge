@@ -23,8 +23,12 @@ or
 
 ## 💡 Hints before you start working on it
 * Keep KISS, DRY, YAGNI, SOLID principles in mind
+* We value a clean domain model, without unnecessary code duplication or complexity
+* Think about how you will handle input validation
+* Follow generally-accepted good practices, such as no logic in controllers, information hiding (see the first hint).
 * Timebox your work - we expect that you would spend between 3 and 4 hours.
 * Your code should be tested
+* We don't care how you handle data persistence, no bonus points for having a complex method
 
 ## When you are finished
 * Please upload your code to a public git repository (i.e. GitHub, Gitlab)
