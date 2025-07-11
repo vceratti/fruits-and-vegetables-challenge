@@ -13,8 +13,8 @@ install:
 start-web:
 	$(DOCKER) -p '8080:80' $(IMAGE) php -S 0.0.0.0:80 public
 
-shell:
-	$(DOCKER) $(IMAGE) bash
+sh:
+	$(DOCKER) $(IMAGE) sh
 
 test:
 	$(DOCKER) $(IMAGE) composer test
