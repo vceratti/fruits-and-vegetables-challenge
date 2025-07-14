@@ -16,9 +16,29 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    _instanceof:
+        App\Domain\Produce\ProduceItemCreationStrategyInterface:
+            tags: ['produce.item.creation_strategy']
+
+    App\Domain\Produce\ProduceItemFactory:
+        arguments:
+            $strategies:  !tagged_iterator produce.item.creation_strategy
+
+    App\Repository\ProduceRepository: ~
+    App\Repository\ProduceRepositoryInterface: '@App\Repository\ProduceRepository'
+
+when@test:
+    services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
+            public: true
+        App\Repository\ProduceRepository: ~
+        App\Service\StorageService: ~
+        App\Domain\Produce\ProduceItemFactory:
+            arguments:
+                $strategies: !tagged_iterator produce.item.creation_strategy
