@@ -1,8 +1,7 @@
 .PHONY: *
 
 IMAGE = roadsurfer-php-test
-DOCKER = docker run --rm -it -v "$(PWD)":/app
-
+DOCKER = docker run --rm -it -v   "$(PWD)":/app
 
 build:
 	docker build -t $(IMAGE) docker/.
@@ -19,11 +18,14 @@ sh:
 test:
 	$(DOCKER) $(IMAGE) composer test
 
+test-coverage:
+	$(DOCKER) $(IMAGE) composer test:coverage
+
 format:
 	$(DOCKER) $(IMAGE) composer format
 
-lint:
-	$(DOCKER) $(IMAGE) composer lint
+phpstan:
+	$(DOCKER) $(IMAGE) composer phpstan
 
-qa:
-	$(DOCKER) $(IMAGE) composer qa
+pre-commit:
+	$(DOCKER) $(IMAGE) composer pre-commit

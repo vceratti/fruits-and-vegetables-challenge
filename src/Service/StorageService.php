@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 class StorageService
@@ -8,8 +10,7 @@ class StorageService
 
     public function __construct(
         string $request
-    )
-    {
+    ) {
         $this->request = $request;
     }
 

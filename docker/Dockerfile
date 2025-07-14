@@ -13,6 +13,7 @@ FROM base AS dev
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
+ARG COMPOSER_MEMORY_LIMIT=-1
 
 RUN addgroup -g ${GROUP_ID} app && \
     adduser -D -u ${USER_ID} -G app app && \
