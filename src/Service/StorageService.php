@@ -4,18 +4,45 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-class StorageService
-{
-    protected string $request = '';
+use App\Domain\Produce\ProduceItemCollectionFactory;
+use App\Repository\ProduceRepositoryInterface;
+use JsonException;
+use PHPUnit\Event\RuntimeException;
+use Throwable;
 
+readonly class StorageService
+{
     public function __construct(
-        string $request
+        private JsonFileReader               $fileReader,
+        private ProduceRepositoryInterface   $produceRepository,
+        private ProduceItemDTOFactory        $produceItemDTOFactory,
+        private ProduceItemCollectionFactory $produceItemCollectionFactory,
     ) {
-        $this->request = $request;
+
     }
 
-    public function getRequest(): string
+    /** @throws JsonException|RuntimeException|Throwable */
+    public function import(string $filePath): void
     {
-        return $this->request;
+        $data = $this->fileReader->read($filePath);
+        $prodiceItemDtoCollection = $this->parseEntries($data);
+
+        $collection = $this->produceItemCollectionFactory->createFromDTOArray($prodiceItemDtoCollection);
+
+        $this->produceRepository->saveCollection($collection);
+    }
+
+    /**
+     * @param array<int, mixed> $data
+     * @return array<int, ProduceItemDTO>
+     */
+    private function parseEntries(array $data): array
+    {
+        $items = [];
+        foreach ($data as $item) {
+            $items[] = $this->produceItemDTOFactory->createFromArray($item);
+        }
+
+        return $items;
     }
 }

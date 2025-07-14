@@ -1,0 +1,9 @@
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        path: '%kernel.project_dir%/db.prod.sqlite'
+
+when@test:
+    doctrine:
+        dbal:
+            path: '%kernel.project_dir%/db.test.sqlite'

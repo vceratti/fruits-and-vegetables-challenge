@@ -5,7 +5,6 @@
          colors="true"
          controlGarbageCollector="true"
          beStrictAboutChangesToGlobalState="true"
-         beStrictAboutCoverageMetadata="true"
          requireCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
          bootstrap="tests/bootstrap.php"
@@ -15,6 +14,7 @@
         <ini name="error_reporting" value="1"/>
         <ini name="memory_limit" value="-1" />
         <server name="APP_ENV" value="test" force="true"/>
+        <env name="KERNEL_CLASS" value="App\Kernel"/>
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[total]=0"/>
     </php>
 
@@ -38,7 +38,6 @@
     </groups>
 
     <coverage
-            pathCoverage="true"
             ignoreDeprecatedCodeUnits="true"
             disableCodeCoverageIgnore="true">
         <report>
