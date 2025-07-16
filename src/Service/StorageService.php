@@ -18,7 +18,6 @@ readonly class StorageService
         private ProduceItemDTOFactory        $produceItemDTOFactory,
         private ProduceItemCollectionFactory $produceItemCollectionFactory,
     ) {
-
     }
 
     /** @throws JsonException|RuntimeException|Throwable */

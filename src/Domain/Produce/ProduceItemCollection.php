@@ -6,7 +6,7 @@ namespace App\Domain\Produce;
 
 use Ramsey\Collection\AbstractCollection;
 
-/** @extends AbstractCollection<ProduceItemInterface> */
+/** @template-extends AbstractCollection<ProduceItemInterface> */
 class ProduceItemCollection extends AbstractCollection
 {
     public function getType(): string

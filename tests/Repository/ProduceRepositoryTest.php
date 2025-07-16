@@ -9,7 +9,6 @@ use App\Domain\Produce\ProduceItem;
 use App\Domain\Produce\ProduceItemCollection;
 use App\Domain\Produce\Vegetable\Vegetable;
 use App\Repository\ProduceRepository;
-use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
@@ -45,9 +44,7 @@ class ProduceRepositoryTest extends IntegrationTestCase
 
         $this->repository->saveCollection($collection);
 
-        $result = $this->getFromContainer(Connection::class)
-            ->executeQuery('SELECT * FROM produce')
-            ->fetchAllAssociative();
+        $result = $this->dbFetch('produce');
 
         $this->assertCount(3, $result);
     }
