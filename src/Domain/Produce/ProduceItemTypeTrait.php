@@ -6,7 +6,7 @@ namespace App\Domain\Produce;
 
 use ReflectionClass;
 
-trait ObjectNameTrait
+trait ProduceItemTypeTrait
 {
     public function getType(): string
     {

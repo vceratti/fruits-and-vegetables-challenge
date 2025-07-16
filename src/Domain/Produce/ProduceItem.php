@@ -6,7 +6,7 @@ namespace App\Domain\Produce;
 
 abstract readonly class ProduceItem implements ProduceItemInterface
 {
-    use ObjectNameTrait;
+    use ProduceItemTypeTrait;
 
     public function __construct(
         private int    $id,

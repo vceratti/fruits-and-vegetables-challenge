@@ -13,13 +13,13 @@ use Throwable;
 
 abstract class IntegrationTestCase extends WebTestCase
 {
-    //    private KernelBrowser $client;
+    protected KernelBrowser $client;
 
     /** @throws Exception */
     protected function setUp(): void
     {
         parent::setUp();
-        //        $this->client = $this->createClient();
+        $this->client = $this->createClient();
         $this->getConnection()->beginTransaction();
     }
 
@@ -52,6 +52,31 @@ abstract class IntegrationTestCase extends WebTestCase
         }
 
         return $object;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $data
+     * @throws Exception
+     */
+    public function batchInsert(string $table, array $data): void
+    {
+        $connection = $this->getConnection();
+        $connection->beginTransaction();
+        foreach ($data as $row) {
+            $connection->insert($table, $row);
+        }
+        $connection->commit();
+    }
+
+    /**
+     * @return array<int, mixed>
+     * @throws Exception
+     */
+    public function dbFetch(string $table): array
+    {
+        return $this->getFromContainer(Connection::class)
+            ->executeQuery("SELECT * FROM $table")
+            ->fetchAllAssociative();
     }
 
 }

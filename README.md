@@ -1,3 +1,31 @@
+
+# Solution notes
+
+## Focus 
+
+- apart from dependencies upgrade, I decided not to implement the bonus features (apart from dependency upgrades) as 
+I already exploded the timebox and I wanted to focus on testing, code quality and tools
+- I didn't implement the following topics as they are trivial but could be time-consuming:
+  - apidoc documentation and generation
+  - using UUID instead of exposing IDs
+  - using ORM, migrations or worrying about DB performance at all 
+
+## Problem considerations
+
+- it was not clear if request.json should have an entrypoint (like a command or API to import a full JSON file), so I 
+just kept the service available and tests using the example file
+- not all suggested collection methods were implemented (there is no function that would use "remove")
+- it was not clear if separate APIs were needed for fruits and vegetables and another one returning a generic collection
+of all produce, so I just created separate fruits and vegetable endpoints
+
+## Developer tools
+
+- I've updated to PHP 8.4, Symfony to 7.3 and PHPUnit to 12.2. I've also added phpstan (with level 8 checks) and 
+php-cs-fixer with a PSR12 + custom style.
+- added XDebug to the docker image and a helper Makefile
+
+---
+
 # 🍎🥕 Fruits and Vegetables
 
 ## 🎯 Goal
